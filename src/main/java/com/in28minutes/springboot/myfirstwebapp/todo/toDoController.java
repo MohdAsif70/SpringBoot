@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 @SessionAttributes("name")
 public class toDoController {
+    //to make use of todoService we used todoService Constructor
     private TodoService todoService;
 
     public toDoController(TodoService todoService) {
@@ -22,7 +23,7 @@ public class toDoController {
     }
 
     @RequestMapping("list-todos")
-    public String listAlltoDos(ModelMap model){
+    public String listAlltoDos(ModelMap model){        //any value from controller to jsp we use Model
         List<todos> todos = todoService.findByUsername("in28minutes");
         model.addAttribute("todos",todos);
         return "listTodos";
@@ -39,7 +40,8 @@ public class toDoController {
     }
 
     @RequestMapping(value="add-todo",method =RequestMethod.POST)
-    public String addNewTodo(ModelMap model, @Valid todos todos, BindingResult result){
+    public String addNewTodo(ModelMap model, @Valid todos todos, BindingResult result)      //todos todos is used to bind the bean todo instead of @RequestPara
+    {
         if (result.hasErrors()){
             return "todo";
         }

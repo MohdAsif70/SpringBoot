@@ -13,7 +13,7 @@ public class loginController {
 
     private AuthenticationService authenticationService;
 
-    //constructor is used for wiring due to spring
+    //constructor is used for wiring due to spring i.e creating instance , used instead of new authenticationService()
     public loginController(AuthenticationService authenticationService) {
         super();
         this.authenticationService = authenticationService;
@@ -26,6 +26,7 @@ public class loginController {
 
     @RequestMapping(value="login",method = RequestMethod.POST)
     //login?name=Ranga RequestParam
+    //any value from controller to jsp we use Model
     public String gotoWelcomePage(@RequestParam String name,
                                   @RequestParam String password, ModelMap model) {
 
